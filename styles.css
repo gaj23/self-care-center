@@ -6,3 +6,89 @@ dark-blue - #134d71;
 white - #ffffff;
 black - #000000;
 */
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+html {
+  height: 100%;
+  background: linear-gradient(#134d71 15%, #78a7c6, #f7e4bf);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1,
+h2 {
+  color: #ffffff;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 auto;
+  padding-top: 45px;
+  padding-bottom: 100px;
+}
+
+h2 {
+  margin: 10px;
+}
+
+.forChoice,
+.forMessage {
+  font-size: 1.2em;
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.forChoice {
+  width: 595px;
+  height: 105px;
+}
+
+.radio {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  padding: 15px;
+  font-style: italic;
+}
+
+input[type="radio"] {
+  transform: scale(1.5);
+  margin: 10px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button button {
+  color: #ffffff;
+  background-color: #134d71;
+  border-radius: 8px;
+  font-size: 1em;
+  width: 200px;
+  height: 30px;
+  border: 0;
+  box-shadow: none;
+}
+
+.forMessage {
+  height: 160px;
+  width: 860px;
+  margin: 110px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 10%;
+}
+
+.hidden {
+  display: none !important;
+}
