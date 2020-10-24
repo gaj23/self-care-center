@@ -5,8 +5,10 @@ var mantra = ["Breathing in, I send myself love. Breathing out, I send love to s
 var currentMessage = "";
 //this will be populated based on index of randomly generatred affirmation or mantra depending on selection of choice.
 
-var radioSelection = document.querySelector('.select');
-//needed?
+var radioSelection = document.querySelectorAll('input');
+//wtf am I trying to select?
+console.log(radioSelection);
+//I'm selecting everything in the radio class...but only direct parent child relationship works? So I absolutely need to utilize bubbling --what's the syntax for that then?
 var messageButton = document.querySelector('.messageButton');
 var message = document.querySelector('.message');
 //will be used to make message appear
@@ -15,26 +17,21 @@ var bellImage = document.querySelector('img');
 //to add/remove hidden with classList?
 
 window.addEventListener('load', preventDefault);
-messageButton.addEventListener('click', generateMessage);
 
 function preventDefault() {
   event.preventDefault();
 }
 
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length)
-}
-//create a random function generator that will be called inside of our functions
+messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
 
-  if (radioSelection === '[value="affirmation"]') {
+  if (radioSelection.className === 'affirmation') {
     currentMessage = affirmation[getRandomIndex(affirmation)];
   } else {
     currentMessage = mantra[getRandomIndex(mantra)];
   }
 
-  //getting back blanks? nothing in log?
   console.log(currentMessage);
 
   bellImage.classList.add('hidden');
@@ -45,6 +42,13 @@ function generateMessage() {
 //I want to see which button is selected .clicked?; why does a for loop apply to something that's not an array?
 
 //I'm only getting affirmations..and now only mantras?..and now only affirmations...why?
+//if I change the qS class to select, then only affirmations pop up, if I change the qS to radio, then only mantras pop up
+//the button runs without even needing something selected! The fuck?
 
 //based on that information will trigger either a random mantra or a random affirmation from generating
 //then that random message will be returned and displayed in the p of forMessage (innerText)
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length)
+}
+//create a random function generator that will be called inside of our functions
