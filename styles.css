@@ -76,6 +76,10 @@ input[type="radio"] {
   box-shadow: none;
 }
 
+button:focus {
+  outline-color: #808080;
+}
+
 .forMessage {
   height: 160px;
   width: 860px;
@@ -92,3 +96,5 @@ img {
 .hidden {
   display: none !important;
 }
+
+//refactor to ems! 
