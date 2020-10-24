@@ -4,7 +4,7 @@ var mantra = ["Breathing in, I send myself love. Breathing out, I send love to s
 
 var currentMessage = "";
 
-var radioSelection = document.querySelectorAll('input');
+var radioSelection = document.querySelectorAll('input[type="radio"]');
 var messageButton = document.querySelector('.messageButton');
 var message = document.querySelector('.message');
 var bellImage = document.querySelector('img');
@@ -18,7 +18,8 @@ function preventDefault() {
 messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
-  if (radioSelection.className === 'affirmation') {
+
+  if (radioSelection[0].checked) {
     currentMessage = affirmation[getRandomIndex(affirmation)];
   } else {
     currentMessage = mantra[getRandomIndex(mantra)];
@@ -26,6 +27,7 @@ function generateMessage() {
   message.innerText = currentMessage;
   revealMessage();
 }
+//how can I make this more dynamic with a for loop? (radio buttons are arrays?!; another document.selector?)
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
