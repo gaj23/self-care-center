@@ -3,6 +3,7 @@ var affirmation = ["I forgive myself and set myself free.", "I believe I can be 
 var mantra = ["Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.", "Don’t let yesterday take up too much of today.", "Every day is a second chance.", "Tell the truth and love everyone.", "I am free from sadness.", "I am enough.", "In the beginning it is you, in the middle it is you and in the end it is you.", "I love myself.", "I am present now.", "Inhale the future, exhale the past.", "This too shall pass.", "Yesterday is not today.", "The only constant is change.", "Onward and upward.", "I am the sky, the rest is weather."];
 
 var currentMessage = "";
+var messageArray = [];
 
 var radioSelection = document.querySelectorAll('input[type="radio"]');
 var messageButton = document.querySelector('.messageButton');
@@ -28,6 +29,29 @@ function generateMessage() {
   revealMessage();
 }
 //how can I make this more dynamic with a for loop? (radio buttons are arrays?!; another document.selector?)
+
+function manageMessagesDisplay() {
+
+  if (!messageArray.length) {
+    messageArray.push(currentMessage)
+  } else if (messageArray.length > (affirmation.length + mantra.length)) {
+    for (var i = 0; i < messageArray.length; i++) {
+      if (messageArray[i] !== currentMessage) {
+        messageArray.push(currentMessage);
+      }
+    }
+  } else {
+    //alert
+    messageArray = [];
+  }
+  //see first if there's anything in the array, if not, push that value.
+  //else if messageArray.length > (affirmation.length + mantra.length) create a for loop to iterate over the messageArray to compare newly generated message and if it exists in this array
+  //if it !there then push it to the array and allow the message to appear
+  //no else needed inside of the loop
+  //else then return an alert that says, hey, you reached the end, you'll see repeats from here on and reassigns the messageArray = [];
+
+
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
