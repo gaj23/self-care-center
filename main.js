@@ -22,19 +22,25 @@ function generateMessage() {
 
   if (radioSelection[0].checked) {
     currentMessage = affirmation[getRandomIndex(affirmation)];
+    manageMessagesDisplayed();
   } else {
     currentMessage = mantra[getRandomIndex(mantra)];
+    manageMessagesDisplayed();
   }
+  console.log(messageArray);
   message.innerText = currentMessage;
   revealMessage();
 }
 //how can I make this more dynamic with a for loop? (radio buttons are arrays?!; another document.selector?)
 
-function manageMessagesDisplay() {
+function manageMessagesDisplayed() {
 
-  if (!messageArray.length) {
+  if (messageArray.length === 0) {
     messageArray.push(currentMessage)
-  } else if (messageArray.length > (affirmation.length + mantra.length)) {
+  } else if (messageArray.length < (affirmation.length + mantra.length))
+
+  //max 28 of an array, but great than a max is occuring?
+  {
     for (var i = 0; i < messageArray.length; i++) {
       if (messageArray[i] !== currentMessage) {
         messageArray.push(currentMessage);
@@ -49,8 +55,7 @@ function manageMessagesDisplay() {
   //if it !there then push it to the array and allow the message to appear
   //no else needed inside of the loop
   //else then return an alert that says, hey, you reached the end, you'll see repeats from here on and reassigns the messageArray = [];
-
-
+  //call this function inside of generateMessage!
 }
 
 function getRandomIndex(array) {
