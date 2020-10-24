@@ -18,21 +18,20 @@ function preventDefault() {
 messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
-
   if (radioSelection.className === 'affirmation') {
     currentMessage = affirmation[getRandomIndex(affirmation)];
   } else {
     currentMessage = mantra[getRandomIndex(mantra)];
   }
-
-  console.log(currentMessage);
-
-  bellImage.classList.add('hidden');
-  message.classList.remove('hidden');
-
   message.innerText = currentMessage;
+  revealMessage();
 }
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
+}
+
+function revealMessage() {
+  bellImage.classList.add('hidden');
+  message.classList.remove('hidden');
 }
