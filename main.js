@@ -5,12 +5,46 @@ var mantra = ["Breathing in, I send myself love. Breathing out, I send love to s
 var currentMessage = "";
 //this will be populated based on index of randomly generatred affirmation or mantra depending on selection of choice.
 
+var radioSelection = document.querySelector('.select');
+//needed?
+var messageButton = document.querySelector('.messageButton');
+var message = document.querySelector('.message');
+//will be used to make message appear
+
+var bellImage = document.querySelector('img');
+//to add/remove hidden with classList?
+
+window.addEventListener('load', preventDefault);
+messageButton.addEventListener('click', generateMessage);
+
+function preventDefault() {
+  event.preventDefault();
+}
+
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+  return Math.floor(Math.random() * array.length)
 }
 //create a random function generator that will be called inside of our functions
 
+function generateMessage() {
 
+  if (radioSelection === '[value="affirmation"]') {
+    currentMessage = affirmation[getRandomIndex(affirmation)];
+  } else {
+    currentMessage = mantra[getRandomIndex(mantra)];
+  }
 
+  //getting back blanks? nothing in log?
+  console.log(currentMessage);
 
-//include a manipulator for
+  bellImage.classList.add('hidden');
+  message.classList.remove('hidden');
+
+  message.innerText = currentMessage;
+}
+//I want to see which button is selected .clicked?; why does a for loop apply to something that's not an array?
+
+//I'm only getting affirmations..and now only mantras?..and now only affirmations...why?
+
+//based on that information will trigger either a random mantra or a random affirmation from generating
+//then that random message will be returned and displayed in the p of forMessage (innerText)
