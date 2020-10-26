@@ -5,6 +5,8 @@ console.log(affirmations.length); //13
 console.log(mantras.length); //15
 
 var currentMessage = "";
+var affirmationsCopy = affirmations;
+var mantrasCopy = mantras;
 
 var radioSelection = document.querySelectorAll('input[type="radio"]');
 var messageButton = document.querySelector('.messageButton');
@@ -21,8 +23,6 @@ messageButton.addEventListener('click', generateMessage);
 //how can I account for having someone just clicking the button?
 
 function generateMessage() {
-  var affirmationsCopy = affirmations;
-  var mantrasCopy = mantras;
   //trying to work around the DOM & repopulate an empty array from using the splice method
   var usedAffirmation = getRandomIndex(affirmations);
   var usedMantra = getRandomIndex(mantras);
@@ -31,32 +31,36 @@ function generateMessage() {
     currentMessage = affirmations[usedAffirmation];
     manageMessagesDisplayed(affirmationsCopy, affirmations);
     affirmationsCopy.splice(usedAffirmation, 1);
+    message.innerText = currentMessage;
+    revealMessage();
     console.log('this is the affirmations array', affirmations, 'this is the current message',
       currentMessage);
-  } else {
+  } else if (radioSelection[1].checked) {
     currentMessage = mantras[usedMantra];
     manageMessagesDisplayed(mantrasCopy, mantras);
     mantrasCopy.splice(currentMessage, 1);
+    message.innerText = currentMessage;
+    revealMessage();
     console.log('this is the mantras array', mantras, 'this is the current message',
       currentMessage);
+  } else {
+    alert("Please select from one of the two options to recieve your message.");
   }
-
-  message.innerText = currentMessage;
-  revealMessage();
 }
 //how can I make this more dynamic with a for loop? (radio buttons are arrays?!; another document.selector?)
 
 function manageMessagesDisplayed(arrayCopy, main) {
   if (!arrayCopy.length) {
-    // if (array === affirmationsCopy) {
-    //   affirmationsCopy = affirmations;
-    // } else {
-    //   mantrasCopy = mantras
-    // }
+    if (arrayCopy === affirmationsCopy) {
+      affirmationsCopy = affirmations;
+    } else {
+      mantrasCopy = mantras;
+    }
+    //contidionals are problematic?
     alert("You've reached the end of our avaliable uplifting messages. Press 'ok' if you'd like to go through them again!")
     console.log(arrayCopy);
     return arrayCopy = main;
-    hideMessage();
+    // hideMessage();
   }
   //how can I repopulate an empty array on the dom??
   //how to prevent undefined from appearing?
