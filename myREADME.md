@@ -4,25 +4,25 @@
 
 This is a project to test my current skills in mod1 of Turing School of Software & Design's Front-End Program. Additionally, I used this project as a place push myself to try new things and explore.
 
-> Images/descriptors? -- screen shots of what the site does
-
 ## [To view](https://gaj23.github.io/self-care-center/)
 To view the current rendition of this site, please click the link in the header titled "To view".   
-No other software is needed. The newest updates of your prefered web browsers are suggested.
+No other software is needed. The newest updates of your preferred web browsers are suggested.
+
+Remember to select an option before you begin!
+<img src="" alt="" width="500" height="500">
+You will able to view all available mantras and/or affirmations until there are no new ones to be viewed. But don't worry! You'll be able to go through it all over again!
+
+Enjoy!
 
 ## Contributions & Thanks
-Thank you to my mentor, Casey (insert git handle here), and Lola (insert git handle here), for their patience and input in my work.
+Thank you to my mentor, Casey (@cbdallavalle), and Lola (@lo-la-di-li), for their patience and input in my work. Additionally, cohort mates such as Alice, Brian, Gary, Ben, Connie, Cole, and Richard all were incredible in their support and guidance.
 If you would like to contribute please:
 - clone down this repo: `git@github.com:gaj23/self-care-center.git`
 - create a new branch: `git checkout -b initials/featureName`
 - contribute in whatever fashion you would like
-- in the terminal, push branch to main
+- in the terminal, push branch upstream to main
 - in github, create a pull request
 Thank you in advance for your input!
-
->
-acknowledgements --who helped, set up the things
-is there code here that's not mine?
 
 ### Contact
 Please follow me @[gaj23](https://github.com/gaj23) on github or to reach out about this or any other project.  
