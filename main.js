@@ -18,50 +18,61 @@ messageButton.addEventListener('click', generateMessage);
 
 
 function generateMessage() {
-
+  event.preventDefault();
   var affirmationsIndex = getRandomIndex(affirmations);
   var mantrasIndex = getRandomIndex(mantras);
   //somewhere in my if statement, undefined is being pushed, where and why would that be?
 
   if (radioSelection[0].checked) {
-    manageMessagesDisplayed(affirmations, usedAffirmations);
-    currentMessage = affirmations[affirmationsIndex];
-    message.innerText = currentMessage;
-    var singularAffirmation = affirmations.splice(affirmationsIndex, 1);
-    usedAffirmations.push(singularAffirmation[0]);
-    revealMessage();
-    console.log(usedAffirmations);
+    if (affirmations.length > 1) {
+      currentMessage = affirmations[affirmationsIndex];
+      message.innerText = currentMessage;
+      var singularAffirmation = affirmations.splice(affirmationsIndex, 1);
+      usedAffirmations.push(singularAffirmation[0]);
+      revealMessage();
+    } else {
+      currentMessage = affirmations[0];
+      message.innerText = currentMessage;
+      var singularAffirmation = affirmations.splice(affirmationsIndex, 1);
+      usedAffirmations.push(singularAffirmation[0]);
+      revealMessage();
+      manageMessagesDisplayed(affirmations, usedAffirmations);
+    }
   } else if (radioSelection[1].checked) {
-    manageMessagesDisplayed(mantras, usedMantras);
-    currentMessage = mantras[mantrasIndex];
-    var singularMantra = mantras.splice(currentMessage, 1);
-    usedMantras.push(singularMantra[0]);
-    message.innerText = currentMessage;
-    revealMessage();
-    console.log(usedMantras);
+    if (mantras.length > 1) {
+      currentMessage = mantras[mantrasIndex];
+      var singularMantra = mantras.splice(currentMessage, 1);
+      usedMantras.push(singularMantra[0]);
+      message.innerText = currentMessage;
+      revealMessage();
+    } else {
+      currentMessage = mantras[0];
+      var singularMantra = mantras.splice(currentMessage, 1);
+      usedMantras.push(singularMantra[0]);
+      message.innerText = currentMessage;
+      revealMessage();
+      manageMessagesDisplayed(mantras, usedMantras);
+    }
   } else {
     alert("Please select from one of the two options to recieve your message.");
+    //start a loop?
   }
-  console.log('used affirmations', usedAffirmations);
+  console.log('used affirmations', usedAffirmations, 'original affirmations array', affirmations);
 }
 
 
 function manageMessagesDisplayed(array, spliced) {
-  if (array.length === 1) {
+  if (!array.length) {
     hideMessage();
-    //the undefined is occuring *after* the alert pops up; I need to do something here to prevent that push .
-    alert("You've reached the end of our avaliable uplifting messages. Press 'ok' if you'd like to go through them again!");
-    array = array.concat(spliced);
+    array = spliced;
+    //how to reassign...but not just reassign? concat? slice? the fuck?
     spliced = [];
-    console.log(array);
-    console.log(spliced);
+    alert("You've reached the end of our avaliable uplifting messages. Press 'ok' if you'd like to go through them again!");
   }
 }
 
-function getRandomMessage(array) {
+function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
-  // var affirmationsIndex = getRandomIndex(affirmations);
-  // var mantrasIndex = getRandomIndex(mantras);
 }
 
 function revealMessage() {
