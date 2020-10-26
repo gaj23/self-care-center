@@ -22,49 +22,39 @@ function preventDefault() {
 messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
-  var affirmationsCopy = affirmations;
-  //trying to work around the DOM & repopulate an empty array from using the splice method
+
   var affirmationsIndex = getRandomIndex(affirmations);
-  //change to affrimation index
-  var usedMantra = getRandomIndex(mantras);
-  //change to mantrasindex cmd +d
+  var mantrasIndex = getRandomIndex(mantras);
 
   if (radioSelection[0].checked) {
-    currentMessage = affirmationsCopy[affirmationsIndex];
-    manageMessagesDisplayed(affirmationsCopy, affirmations);
-    usedAffirmations.push(affirmationsCopy.splice(affirmationsIndex[0], 1));
-    //at what index in what array do I want to "pull" the data from? splitting up .push and .splice? 
+    currentMessage = affirmations[affirmationsIndex];
+    manageMessagesDisplayed(affirmations, usedAffirmations);
+    var singularAffirmation = affirmations.splice(affirmationsIndex, 1);
+    usedAffirmations.push(singularAffirmation[0]);
     message.innerText = currentMessage;
     revealMessage();
-    console.log('reterned affirmations', usedAffirmations);
-    // console.log('this is the affirmations array', affirmationsCopy, 'this is the current message',
-    //   currentMessage);
   } else if (radioSelection[1].checked) {
-    currentMessage = mantras[usedMantra];
-    manageMessagesDisplayed(mantrasCopy, mantras);
-    mantrasCopy.splice(currentMessage, 1);
+    currentMessage = mantras[mantrasIndex];
+    manageMessagesDisplayed(mantras, usedMantras);
+    var singularMantra = mantras.splice(currentMessage, 1);
+    usedMantras.push(singularMantra[0]);
     message.innerText = currentMessage;
     revealMessage();
-    console.log('this is the mantras array', mantras, 'this is the current message',
-      currentMessage);
   } else {
     alert("Please select from one of the two options to recieve your message.");
   }
-  console.log('this is affirmations', affirmations, 'this is the copy', affirmationsCopy, )
+  console.log('used affirmations', usedAffirmations, 'used Mantras', usedMantras);
 }
-//how can I make this more dynamic with a for loop? (radio buttons are arrays?!; another document.selector?)
 
-function manageMessagesDisplayed(arrayCopy, main) {
-  if (!arrayCopy.length) {
-    arrayCopy = main;
-    //contidionals are problematic?
+
+function manageMessagesDisplayed(array, spliced) {
+  if (!array.length) {
     alert("You've reached the end of our avaliable uplifting messages. Press 'ok' if you'd like to go through them again!")
-    console.log(arrayCopy);
-    // return arrayCopy;
-    // hideMessage();
+    array = spliced;
   }
-  //how can I repopulate an empty array on the dom??
   //how to prevent undefined from appearing?
+  hideMessage();
+  console.log(array);
 }
 
 function getRandomIndex(array) {
