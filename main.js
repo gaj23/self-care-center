@@ -13,52 +13,55 @@ var messageButton = document.querySelector('.messageButton');
 var message = document.querySelector('.message');
 var image = document.querySelector('img');
 
-window.addEventListener('load', preventDefault);
-
-function preventDefault() {
-  event.preventDefault();
-}
 
 messageButton.addEventListener('click', generateMessage);
+
 
 function generateMessage() {
 
   var affirmationsIndex = getRandomIndex(affirmations);
   var mantrasIndex = getRandomIndex(mantras);
+  //somewhere in my if statement, undefined is being pushed, where and why would that be?
 
   if (radioSelection[0].checked) {
-    currentMessage = affirmations[affirmationsIndex];
     manageMessagesDisplayed(affirmations, usedAffirmations);
+    currentMessage = affirmations[affirmationsIndex];
+    message.innerText = currentMessage;
     var singularAffirmation = affirmations.splice(affirmationsIndex, 1);
     usedAffirmations.push(singularAffirmation[0]);
-    message.innerText = currentMessage;
     revealMessage();
+    console.log(usedAffirmations);
   } else if (radioSelection[1].checked) {
-    currentMessage = mantras[mantrasIndex];
     manageMessagesDisplayed(mantras, usedMantras);
+    currentMessage = mantras[mantrasIndex];
     var singularMantra = mantras.splice(currentMessage, 1);
     usedMantras.push(singularMantra[0]);
     message.innerText = currentMessage;
     revealMessage();
+    console.log(usedMantras);
   } else {
     alert("Please select from one of the two options to recieve your message.");
   }
-  console.log('used affirmations', usedAffirmations, 'used Mantras', usedMantras);
+  console.log('used affirmations', usedAffirmations);
 }
 
 
 function manageMessagesDisplayed(array, spliced) {
-  if (!array.length) {
-    alert("You've reached the end of our avaliable uplifting messages. Press 'ok' if you'd like to go through them again!")
-    array = spliced;
+  if (array.length === 1) {
+    hideMessage();
+    //the undefined is occuring *after* the alert pops up; I need to do something here to prevent that push .
+    alert("You've reached the end of our avaliable uplifting messages. Press 'ok' if you'd like to go through them again!");
+    array = array.concat(spliced);
+    spliced = [];
+    console.log(array);
+    console.log(spliced);
   }
-  //how to prevent undefined from appearing?
-  hideMessage();
-  console.log(array);
 }
 
-function getRandomIndex(array) {
+function getRandomMessage(array) {
   return Math.floor(Math.random() * array.length)
+  // var affirmationsIndex = getRandomIndex(affirmations);
+  // var mantrasIndex = getRandomIndex(mantras);
 }
 
 function revealMessage() {
