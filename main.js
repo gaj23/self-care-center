@@ -16,7 +16,6 @@ messageButton.addEventListener('click', generateMessage);
 function generateMessage() {
   var affirmationsIndex = getRandomIndex(affirmations);
   var mantrasIndex = getRandomIndex(mantras);
-
   if (radioSelection[0].checked) {
     if (affirmations.length > 1) {
       currentMessage = affirmations[affirmationsIndex];
@@ -65,16 +64,14 @@ function generateMessage() {
 //   usedData = [];
 //   alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
 // }
-//I don't understand why this isn't working. So I hard coded it instead. If you could please walk me through it, I would greatly appreciate it.
+//I don't understand why this isn't working. So I hard coded it instead. If you could please walk me through why the repopulation wasn't working inside of a function but would work when hard coded, I would greatly appreciate it.
 
 function theEnd() {
   alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
 }
 
 function getRandomIndex(array) {
-
   return Math.floor(Math.random() * array.length)
-  // refactor and return a variable index to generateMessage function
 }
 
 function revealMessage() {
