@@ -14,57 +14,43 @@ var image = document.querySelector('img');
 messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
+
+
   var affirmationsIndex = getRandomIndex(affirmations);
   var mantrasIndex = getRandomIndex(mantras);
+  //how can I refactor so that all that is returned in an index? put an if statement in this function?
+
+  var usedMessages;
+  var messages;
+
   if (radioSelection[0].checked) {
-    if (affirmations.length > 1) {
-      currentMessage = affirmations[affirmationsIndex];
-      message.innerText = currentMessage;
-      var singularAffirmation = affirmations.splice(affirmationsIndex, 1);
-      usedAffirmations.push(singularAffirmation[0]);
-      revealMessage();
-    } else {
-      currentMessage = affirmations[0];
-      message.innerText = currentMessage;
-      var singularAffirmation = affirmations.splice(0, 1);
-      usedAffirmations.push(singularAffirmation[0]);
-      affirmations = usedAffirmations;
-      usedAffirmations = [];
-      revealMessage();
-      theEnd();
-      hideMessage();
-      // manageMessagesDisplayed(affirmations, usedAffirmations);
-    }
+    messages = affirmations;
+    usedMessages = usedAffirmations;
   } else if (radioSelection[1].checked) {
-    if (mantras.length > 1) {
-      currentMessage = mantras[mantrasIndex];
-      var singularMantra = mantras.splice(currentMessage, 1);
-      usedMantras.push(singularMantra[0]);
-      message.innerText = currentMessage;
-      revealMessage();
-    } else {
-      currentMessage = mantras[0];
-      var singularMantra = mantras.splice(currentMessage, 1);
-      usedMantras.push(singularMantra[0]);
-      message.innerText = currentMessage;
-      mantras = usedMantras;
-      usedMantras = [];
-      revealMessage();
-      theEnd();
-      hideMessage();
-      // manageMessagesDisplayed(mantras, usedMantras);
-    }
+    messages = mantras;
+    usedMessages = usedMantras;
   } else {
     alert("Please select from one of the two options to recieve your message.");
   }
-}
 
-// function manageMessagesDisplayed(originalData, usedData) {
-//   originalData = usedData;
-//   usedData = [];
-//   alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
-// }
-//I don't understand why this isn't working. So I hard coded it instead. If you could please walk me through why the repopulation wasn't working inside of a function but would work when hard coded, I would greatly appreciate it.
+  if (messages.length > 1) {
+    currentMessage = messages[affirmationsIndex];
+    message.innerText = currentMessage;
+    var singularMessage = messages.splice(affirmationsIndex, 1);
+    usedMessages.push(singularMessage[0]);
+    revealMessage();
+  } else {
+    currentMessage = messages[0];
+    message.innerText = currentMessage;
+    var singularMessage = messages.splice(0, 1);
+    usedMessages.push(singularMessage[0]);
+    messages = usedMessages;
+    usedMessages = [];
+    revealMessage();
+    theEnd();
+    hideMessage();
+  }
+}
 
 function theEnd() {
   alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
@@ -73,6 +59,7 @@ function theEnd() {
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
 }
+
 
 function revealMessage() {
   image.classList.add('hidden');
