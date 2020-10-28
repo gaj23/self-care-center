@@ -15,28 +15,31 @@ messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
 
-
+  //
   var affirmationsIndex = getRandomIndex(affirmations);
   var mantrasIndex = getRandomIndex(mantras);
-  //how can I refactor so that all that is returned in an index? put an if statement in this function?
 
+  // //how can I refactor so that all that is returned in an index? put an if statement in this function?
   var usedMessages;
   var messages;
 
   if (radioSelection[0].checked) {
+    // randomIndex = getRandomIndex(affirmations);
     messages = affirmations;
     usedMessages = usedAffirmations;
   } else if (radioSelection[1].checked) {
+    // randomIndex = getRandomIndex(mantras);
     messages = mantras;
     usedMessages = usedMantras;
+    // console.log('randomIndex', randomIndex, 'messages array', messages, 'usedMessages', usedMessages);
   } else {
     alert("Please select from one of the two options to recieve your message.");
   }
 
   if (messages.length > 1) {
-    currentMessage = messages[affirmationsIndex];
+    currentMessage = messages[randomIndex];
     message.innerText = currentMessage;
-    var singularMessage = messages.splice(affirmationsIndex, 1);
+    var singularMessage = messages.splice(randomIndex, 1);
     usedMessages.push(singularMessage[0]);
     revealMessage();
   } else {
