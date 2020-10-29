@@ -8,8 +8,8 @@ messageButton.addEventListener('click', generateMessage);
 function generateMessage() {
 
   //
-  var affirmationsIndex = getRandomIndex(affirmations);
-  var mantrasIndex = getRandomIndex(mantras);
+  var randomIndex = getRandomIndex(affirmations);
+  var randomIndex = getRandomIndex(mantras);
 
   // //how can I refactor so that all that is returned in an index? put an if statement in this function?
   var usedMessages;
@@ -42,13 +42,9 @@ function generateMessage() {
     messages = usedMessages;
     usedMessages = [];
     revealMessage();
-    theEnd();
+    alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
     hideMessage();
   }
-}
-
-function theEnd() {
-  alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
 }
 
 function getRandomIndex(array) {
