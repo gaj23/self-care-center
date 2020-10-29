@@ -6,7 +6,7 @@ var image = document.querySelector('img');
 messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
-
+  // manageMessage();
   //
   var randomIndex = getRandomIndex(affirmations);
   var randomIndex = getRandomIndex(mantras);
@@ -33,7 +33,6 @@ function generateMessage() {
     message.innerText = currentMessage;
     var singularMessage = messages.splice(randomIndex, 1);
     usedMessages.push(singularMessage[0]);
-    revealMessage();
   } else {
     currentMessage = messages[0];
     message.innerText = currentMessage;
@@ -41,7 +40,6 @@ function generateMessage() {
     usedMessages.push(singularMessage[0]);
     messages = usedMessages;
     usedMessages = [];
-    revealMessage();
     alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
     hideMessage();
   }
@@ -51,6 +49,9 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length)
 }
 
+function manageMessage() {
+  image.classList.toggle('hidden');
+}
 
 function revealMessage() {
   image.classList.add('hidden');
