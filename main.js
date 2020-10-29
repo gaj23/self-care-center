@@ -6,51 +6,32 @@ var image = document.querySelector('img');
 messageButton.addEventListener('click', generateMessage);
 
 function generateMessage() {
-  // manageMessage();
-  //
-  var randomIndex = getRandomIndex(affirmations);
-  var randomIndex = getRandomIndex(mantras);
-
-  // //how can I refactor so that all that is returned in an index? put an if statement in this function?
-  var usedMessages;
-  var messages;
-
+  revealMessage();
   if (radioSelection[0].checked) {
-    // randomIndex = getRandomIndex(affirmations);
-    messages = affirmations;
-    usedMessages = usedAffirmations;
+    messageHandler(affirmations)
   } else if (radioSelection[1].checked) {
-    // randomIndex = getRandomIndex(mantras);
-    messages = mantras;
-    usedMessages = usedMantras;
-    // console.log('randomIndex', randomIndex, 'messages array', messages, 'usedMessages', usedMessages);
+    messageHandler(mantras);
   } else {
     alert("Please select from one of the two options to recieve your message.");
   }
+}
 
-  if (messages.length > 1) {
-    currentMessage = messages[randomIndex];
-    message.innerText = currentMessage;
-    var singularMessage = messages.splice(randomIndex, 1);
-    usedMessages.push(singularMessage[0]);
-  } else {
-    currentMessage = messages[0];
-    message.innerText = currentMessage;
-    var singularMessage = messages.splice(0, 1);
-    usedMessages.push(singularMessage[0]);
-    messages = usedMessages;
-    usedMessages = [];
+function messageHandler(messageType) {
+  var x = getRandomIndex(messageType);
+  currentMessage = messageType[x];
+  console.log(currentMessage);
+  message.innerText = currentMessage;
+  messageType.splice(x, 1);
+  if (messageType.length === 0) {
     alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
-    hideMessage();
+    window.reload();
   }
 }
+//window.reload?? Location.reload
 
 function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length)
-}
-
-function manageMessage() {
-  image.classList.toggle('hidden');
+  var randomIndex = Math.floor(Math.random() * array.length);
+  return randomIndex;
 }
 
 function revealMessage() {
@@ -58,10 +39,10 @@ function revealMessage() {
   message.classList.remove('hidden');
 }
 
-function hideMessage() {
-  image.classList.remove('hidden');
-  message.classList.add('hidden');
-}
+// function hideMessage() {
+//   image.classList.remove('hidden');
+//   message.classList.add('hidden');
+// }
 
 //.toggle!
 //mv from line44 to just inside function
