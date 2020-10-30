@@ -19,15 +19,13 @@ function generateMessage() {
 function messageHandler(messageType) {
   var x = getRandomIndex(messageType);
   currentMessage = messageType[x];
-  console.log(currentMessage);
   message.innerText = currentMessage;
   messageType.splice(x, 1);
   if (messageType.length === 0) {
     alert("You've reached the end of our avaliable messages. Please click 'ok' to view them again!");
-    window.reload();
+    window.location.reload();
   }
 }
-//window.reload?? Location.reload
 
 function getRandomIndex(array) {
   var randomIndex = Math.floor(Math.random() * array.length);
@@ -38,13 +36,3 @@ function revealMessage() {
   image.classList.add('hidden');
   message.classList.remove('hidden');
 }
-
-// function hideMessage() {
-//   image.classList.remove('hidden');
-//   message.classList.add('hidden');
-// }
-
-//.toggle!
-//mv from line44 to just inside function
-//rm line 52
-//combiine hide/reveal with toggle option only
