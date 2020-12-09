@@ -9,9 +9,16 @@ To view the current rendition of this site, please click the link in the header 
 No other software is needed. The newest updates of your preferred web browsers are suggested.
 
 Remember to select an option before you begin!
+<details>
+  <summary>Option Alert</summary>
 <img src="https://github.com/gaj23/self-care-center/blob/main/assets/selection_alert.png?raw=true" alt="Screenshot of an alert asking for a selection of a radio button" width="500" height="500">
+</details>
+
 You will able to view all available mantras and/or affirmations until there are no new ones to be viewed. But don't worry! You'll be able to go through it all over again!
+<details>
+  <summary>Resetting Alert</summary>
 <img src="https://github.com/gaj23/self-care-center/blob/main/assets/final_alert.png?raw=true" alt="Screenshot of an alert telling the user that the messages will now repeat" width="500" height="500">
+  </details>
 Enjoy!
 
 ## Contributions & Thanks
